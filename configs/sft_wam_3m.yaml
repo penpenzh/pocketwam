@@ -1,0 +1,49 @@
+seed: 42
+data:
+  dataset_dir: dataset
+  episodes_collect: 20000
+  val_frac: 0.3
+  eval_episodes: 500
+  warm_start_prob: 0.35
+  play_max_steps: 8
+  pretrain_scenes: 30000
+  pretrain_play_episodes: 12000
+model:
+  size: 3m
+  d_model: 192
+  n_layer: 6
+  d_ff: 448
+  act_hidden:
+  - 640
+  - 160
+  img_ch:
+  - 48
+  - 80
+  denoise_steps: 1
+  action_delta_cond: false
+pretrain:
+  output_dir: outputs_pretrain_wam_3m
+  epochs: 12
+  batch_size: 256
+  lr: 0.0004
+train:
+  output_dir: outputs_sft_wam_3m/train
+  init_ckpt: outputs_pretrain_wam_3m/pocketwam-3m-pretrain
+  epochs: 25
+  batch_size: 256
+  lr: 0.0003
+  weight_decay: 1.0e-05
+  balanced_losses: true
+  video_loss_weight: 1.0
+  action_loss_weight: 12.0
+  action_grip_weight: 0.3
+  video_semantic_weight: 10.0
+  t_weight_power: 1.0
+  idm_loss_weight: 1.0
+  idm_true_prob: 0.5
+eval:
+  ckpt: outputs_sft_wam_3m/train/pocketwam-3m
+  output_dir: outputs_sft_wam_3m/eval
+  gif_fps: 12
+  frame_res: 256
+  gifs: 30

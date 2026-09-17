@@ -1,0 +1,10 @@
+# artifacts
+dataset/
+outputs_*/
+outputs/
+__pycache__/
+*.pyc
+*.egg-info/
+.ipynb_checkpoints/
+full_run.log
+app_runs/

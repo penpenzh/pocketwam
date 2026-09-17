@@ -1,0 +1,13 @@
+# PocketVLA dependencies (version floors aligned with the tested environment)
+
+numpy>=1.26.4
+matplotlib>=3.8.4
+pillow>=11.3.0
+pyyaml>=6.0.2
+torch>=2.7.0
+transformers>=4.57.6        # verified on 4.57.6 and 5.7.0
+
+# Demo UI (app.py)
+gradio>=5.49.1
+huggingface-hub<1.0     # 与 transformers 4.x 共存所需的 hub 版本约束
+imageio-ffmpeg              # mp4 回放编码（自带 libx264 的 ffmpeg）
